@@ -26,7 +26,7 @@ export const authOptions  : NextAuthOptions = {
       // Add custom properties to the session if needed
       return session;
     },
-          //@ts-ignore
+    //@ts-expect-error
     async signIn({ user, account, profile }  : {user : User}) {
      const checkuesr = await UserService.CheckUser(user.email)
      if(checkuesr == null){

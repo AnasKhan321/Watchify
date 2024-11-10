@@ -39,14 +39,14 @@ async function checkForNewUploads() {
         const command = new ListObjectsV2Command({
             Bucket: process.env.AWS_PREFETCH_BUCKET,
         });
-        //@ts-ignore
+  //@ts-expect-error
         const response = await s3Client.send(command);
         console.log(response.Contents)
 
 
         if(response.Contents ){
             if(response.Contents.length > 0 ){
-                //@ts-ignore
+          //@ts-expect-error
                 const sortedObjects = response.Contents.sort((a, b) => 
                     (a.LastModified?.getTime() || 0) - (b.LastModified?.getTime() || 0)
                 );
@@ -106,6 +106,6 @@ const runnewTask = async(videourl : string , videoname : string , full_video_nam
             ]
         }
     })
-            //@ts-ignore
+      //@ts-expect-error
     await ecsClient.send(command)
 }

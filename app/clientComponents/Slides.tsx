@@ -17,12 +17,12 @@ import { Play } from 'lucide-react';
 export default function Slides({movies}  : {movies : Movie[]}) {
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
-        //@ts-ignore
+  //@ts-expect-error
   const onAutoplayTimeLeft = (s, time, progress) => {
     if(progressCircle !==null  && progressContent !==null){
-      //@ts-ignore
+//@ts-expect-error
       progressCircle.current.style.setProperty('--progress', 1 - progress);
-            //@ts-ignore
+      //@ts-expect-error
       progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
     }
 

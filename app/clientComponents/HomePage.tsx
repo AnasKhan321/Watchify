@@ -19,7 +19,7 @@ export default function HomePage({movies}  : {movies : Movie[]}) {
 
 
               {movies.map((movie)=>(
-                <MovieCard movie={movie}/>
+                <MovieCard key={movie.id} movie={movie}/>
               ))}
             </div>
 

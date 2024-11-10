@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images : {
+    domains : ["lh3.googleusercontent.com"  , "watchify-post-encoding.s3.ap-south-1.amazonaws.com"  , "watchifybucket.s3.ap-south-1.amazonaws.com"]
+  }
 };
 
 export default nextConfig;

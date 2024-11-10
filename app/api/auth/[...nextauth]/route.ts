@@ -6,6 +6,8 @@ import { prisma } from "@/clients/prismaclient";
 import { User } from "@/interfaces";
 import { UserService } from "@/services/Userservice";
 
+import {NextApiRequest ,NextApiResponse } from "next"
+
 export const authOptions  : NextAuthOptions = {
   // Configure one or more authentication providers
   providers: [
@@ -40,6 +42,13 @@ export const authOptions  : NextAuthOptions = {
 
 
 
-const handler = NextAuth(authOptions);
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  return NextAuth(req, res, authOptions);
+}
 
-export { handler as GET, handler as POST };
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 import MovieDetail from "@/app/clientComponents/MovieDetail";
 import axios from "axios";
 
-export default async function Page({params}  : {params : {id : string}}){
+export default async function Page({params}  : { params: Promise<{ id: string }>}){
     const parameters = await params ; 
 
     const {data }  = await  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/movie/${parameters.id}`)

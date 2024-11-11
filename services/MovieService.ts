@@ -4,14 +4,14 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { title } from "process";
 
 const client = new S3Client({
-    region: process.env.AWS_REGION,
+    region: process.env.AWS_REGION as string ,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID  as string ,
+        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET  as string 
     }
 })
 
-const bucket = process.env.AWS_WATCHIFY_BUCKET
+const bucket = process.env.AWS_WATCHIFY_BUCKET as string 
 
 export class MovieService{
 

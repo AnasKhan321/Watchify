@@ -18,3 +18,4 @@ export interface Movie {
   updatedAt  : string
 
 }
+

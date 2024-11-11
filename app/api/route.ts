@@ -4,31 +4,31 @@ import redisClient from "@/clients/redisclient"
 import  { ECSClient, RunTaskCommand } from '@aws-sdk/client-ecs'
 
 
-const ecsClient = new ECSClient({
-    region: process.env.AWS_REGION,
+const ecsClient = new ECSClient({ 
+    region: process.env.AWS_REGION as string ,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID  as string ,
+        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET  as string
     }
 })
 
 const config = {
-    CLUSTER: process.env.AWS_CLUSTER,
-    TASK: process.env.AWS_TASK
+    CLUSTER: process.env.AWS_CLUSTER as string ,
+    TASK: process.env.AWS_TASK as string 
 }
 
 
-export async function GET(){
+export async function GET(request : Request){
     await checkForNewUploads() 
-    return NextResponse.json({data : "this is here"})
+    return Response.json({data : "this is here"})
 }
 
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION,
+    region: process.env.AWS_REGION as string   ,
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID as string ,
+        secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET as string 
     }
 })
 
@@ -37,16 +37,16 @@ const s3Client = new S3Client({
 async function checkForNewUploads() {
     try {
         const command = new ListObjectsV2Command({
-            Bucket: process.env.AWS_PREFETCH_BUCKET,
+            Bucket: process.env.AWS_PREFETCH_BUCKET as string ,
         });
-  //@ts-expect-error
+
         const response = await s3Client.send(command);
         console.log(response.Contents)
 
 
         if(response.Contents ){
             if(response.Contents.length > 0 ){
-          //@ts-expect-error
+
                 const sortedObjects = response.Contents.sort((a, b) => 
                     (a.LastModified?.getTime() || 0) - (b.LastModified?.getTime() || 0)
                 );
@@ -59,16 +59,21 @@ async function checkForNewUploads() {
                         console.log("already uploaded")
 
                     }else{
-                        const uploaded_url = `
-                        ${process.env.AWS_POST_VIDEO_URL}${lastobject.Key}`
-                        const full_video_name = lastobject.Key.split("/")[1]
-                        const videoname = full_video_name.split(".")[0]
-                        console.log(uploaded_url)
-                        console.log(full_video_name)
-                        console.log(videoname)
-                        const runtask = await runnewTask(uploaded_url  , videoname , full_video_name)
-                        await redisClient.set("lastobject"  , lastobject.Key)
-                        console.log("Uploaded")
+                        if(lastobject.Key){
+                            const uploaded_url = `
+                            ${process.env.AWS_POST_VIDEO_URL}${lastobject.Key}`
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            const full_video_name = lastobject.Key.split("/")[1]
+                            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                            const videoname = full_video_name.split(".")[0]
+                            console.log(uploaded_url)
+                            console.log(full_video_name)
+                            console.log(videoname)
+                            const runtask = await runnewTask(uploaded_url  , videoname , full_video_name)
+                            await redisClient.set("lastobject"  , lastobject.Key)
+                            console.log("Uploaded")
+                        }
+
                     }
                 }
             }
@@ -82,8 +87,8 @@ async function checkForNewUploads() {
 
 const runnewTask = async(videourl : string , videoname : string , full_video_name : string)=>{
     const command = new RunTaskCommand({
-        cluster: config.CLUSTER,
-        taskDefinition: config.TASK,
+        cluster: config.CLUSTER as string ,
+        taskDefinition: config.TASK as string ,
         launchType: 'FARGATE',
         count: 1,
         networkConfiguration: {
@@ -96,7 +101,7 @@ const runnewTask = async(videourl : string , videoname : string , full_video_nam
         overrides: {
             containerOverrides: [
                 {
-                    name: process.env.AWS_TASK_IMAGE_NAME,
+                    name: process.env.AWS_TASK_IMAGE_NAME as string,
                     environment: [
                         { name: 'S3_URL', value: videourl },
                         { name: 'videoname', value: videoname },
@@ -106,6 +111,5 @@ const runnewTask = async(videourl : string , videoname : string , full_video_nam
             ]
         }
     })
-      //@ts-expect-error
     await ecsClient.send(command)
 }

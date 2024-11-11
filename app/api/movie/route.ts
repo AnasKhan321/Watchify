@@ -1,7 +1,7 @@
 import { MovieService } from "@/services/MovieService";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export  async function POST(request : NextRequest , response : NextResponse){
+export  async function POST(request : Request ){
     try {
         const data = await request.json()
         console.log(data)
@@ -10,16 +10,16 @@ export  async function POST(request : NextRequest , response : NextResponse){
 
         await MovieService.createMovie(data.title , data.description , data.videourl , data.imageurl  , data.posterimageurl)
     
-        return NextResponse.json({message : "Created successfully"}  , {status : 201 }) 
+        return Response.json({message : "Created successfully"}  , {status : 201 }) 
     } catch (error) {
         console.log(error)
-        return NextResponse.json({message : "something went wrong"}  , {status : 401 }) 
+        return Response.json({message : "something went wrong"}  , {status : 401 }) 
     }
 
 }
 
 
-export async function GET(request : NextRequest , response : NextResponse) {
+export async function GET(request : Request) {
         try {
             
             const url = new URL(request.url)
@@ -29,11 +29,11 @@ export async function GET(request : NextRequest , response : NextResponse) {
             if(url.search == ''){
                 const data = await MovieService.getmovies() 
 
-                return NextResponse.json({movies : data })
+                return Response.json({movies : data })
             }else{
                 const query = url.search.split("=")[1]
                 const data = await MovieService.getMoviesbyquery(query)
-                return NextResponse.json({movies : data })
+                return Response.json({movies : data })
 
             }
 
@@ -42,6 +42,6 @@ export async function GET(request : NextRequest , response : NextResponse) {
         } catch (error) {
             console.log(error)
 
-            return NextResponse.json({message : "something went wrong"}  , {status : 401 }) 
+            return Response.json({message : "something went wrong"}  , {status : 401 }) 
         }
 }

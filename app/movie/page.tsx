@@ -11,7 +11,7 @@ import { Movie } from '@/interfaces'
 import MovieCard from '../clientComponents/MovieCard'
 import {ScaleLoader}  from 'react-spinners'
 
-export default function SearchPage() {
+export default function Page() {
   const [searchQuery, setSearchQuery] = useState('')
   const [genre, setGenre] = useState('')
   const [yearRange, setYearRange] = useState([1900, 2023])

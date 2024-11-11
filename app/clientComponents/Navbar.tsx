@@ -2,7 +2,9 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Bell, Search } from "lucide-react";
 import {useState , useEffect }  from "react"
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession   , signIn , signOut} from 'next-auth/react';
+
+// import { signIn  , signOut } from "@/auth"
 import { Avatar } from "@/components/ui/avatar";
 import Link from "next/link"
 
@@ -23,6 +25,8 @@ export default function Navbar(){
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
       }, [])
+
+
     return(
         <header className={`fixed top-0 z-50 w-full transition-all duration-500 ${isScrolled ? "bg-black" : "bg-gradient-to-b from-black/80 to-transparent"}`}>
         <div className="flex items-center space-x-2 md:space-x-10 h-16 px-4 md:px-8">
@@ -65,7 +69,7 @@ export default function Navbar(){
 }
             {
                 !session && <button className='px-4 py-2 bg-red-600 text-white hover:bg-red-700 transition-all rounded-md  '
-                onClick={()=>{signIn()}}> Login </button>
+                onClick={()=>{signIn("google")}}> Login </button>
             }
         </div>
       </header>

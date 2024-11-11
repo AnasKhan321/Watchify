@@ -23,9 +23,6 @@ export async function GET(request : Request) {
         try {
             
             const url = new URL(request.url)
-            console.log(url )
-            console.log(url.searchParams)
-
             if(url.search == ''){
                 const data = await MovieService.getmovies() 
 

@@ -4,7 +4,7 @@ import axios from "axios";
 export default async function Page({params}  : { params: Promise<{ id: string }>}){
     const parameters = await params ; 
 
-    const {data }  = await  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/movie/${parameters.id}`)
+    const {data }  = await  axios.get(`https://watchify-topaz.vercel.app/api/movie/${parameters.id}`)
 
 
     if(data.data==null){

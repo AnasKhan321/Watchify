@@ -24,7 +24,7 @@ export default function Page() {
 
         ;(async()=>{
             setisLoading(true)
-            const {data}  = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/movie?query=${debouncedValue}`)
+            const {data}  = await axios.get(`https://watchify-topaz.vercel.app/api/movie?query=${debouncedValue}`)
             setMovies(data.movies)
             setisLoading(false)
         })()

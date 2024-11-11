@@ -60,8 +60,7 @@ async function checkForNewUploads() {
 
                     }else{
                         if(lastobject.Key){
-                            const uploaded_url = `
-                            ${process.env.AWS_POST_VIDEO_URL}${lastobject.Key}`
+                            const uploaded_url = `${process.env.AWS_POST_VIDEO_URL}${lastobject.Key}`
                             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                             const full_video_name = lastobject.Key.split("/")[1]
                             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

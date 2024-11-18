@@ -5,16 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Play } from 'lucide-react'
 import { Movie } from '@/interfaces'
-import {useRouter}  from "next/navigation"
-
+import Image from "next/image"
 
 
 export default function MovieCard({movie }  : {movie : Movie}) {
   const [isHovered, setIsHovered] = useState(false)
- const router = useRouter()
-  const handleClick = ()=>{
-        router.push(`/movie/${movie.id}`)
-  }
+
 
   return (
     <Card 
@@ -23,11 +19,9 @@ export default function MovieCard({movie }  : {movie : Movie}) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="overflow-hidden">
-        <img 
-          src={movie.imageurl} 
-          alt={movie.title}
-          className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
-        />
+
+        <Image src={movie.imageurl}   alt={movie.title}  width={500}  height={0} className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"/>
+
       </div>
       <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
       <CardContent className={`absolute bottom-0 left-0 right-0 p-4 transition-transform duration-300 ${isHovered ? 'translate-y-0' : 'translate-y-full'}`}>

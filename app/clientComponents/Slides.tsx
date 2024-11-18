@@ -12,6 +12,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { Movie } from '@/interfaces';
 import { Button } from '@/components/ui/button';
 import { Play } from 'lucide-react';
+import Image from "next/image"
 
 
 export default function Slides({movies}  : {movies : Movie[]}) {
@@ -46,14 +47,11 @@ export default function Slides({movies}  : {movies : Movie[]}) {
                 <SwiperSlide key={movie.id}>
                         <section className="relative h-[80vh] md:h-[90vh]">
                         <div className="absolute inset-0 w-[100vw]">
-                        <img
-                            src={movie.posterimageurl}
-                            alt="Featured movie"
-                            className="w-full h-full object-cover"
-                        />
+
+                          <Image src={movie.posterimageurl}  alt="featured movie"  width={1500}  height={0}  className="w-full h-full object-cover" /> 
                         <div className="absolute inset-0 w-[100vw] bg-gradient-to-b from-transparent via-black/60 to-black" />
                         </div>
-                        <div className="absolute bottom-0 left-0 p-8 md:p-16 space-y-4 w-[200px]  md:w-[500px]">
+                        <div className="absolute bottom-0 left-0 p-8 md:p-16 space-y-4 w-[300px]  md:w-[500px]">
                         <h2 className="text-2xl md:text-6xl font-bold">{movie.title.toUpperCase()}</h2>
                         <p className="text-sm md:text-xl">{movie.description.slice(0, 100 )}</p>
                         <div className="space-x-4">

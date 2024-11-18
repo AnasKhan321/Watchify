@@ -4,8 +4,6 @@ import { useState  , useEffect} from 'react'
 import { Input } from "@/components/ui/input"
 import { useDebounceValue } from 'usehooks-ts'
 import Navbar from '../clientComponents/Navbar'
-
-
 import axios from "axios"
 import { Movie } from '@/interfaces'
 import MovieCard from '../clientComponents/MovieCard'
@@ -13,8 +11,6 @@ import {ScaleLoader}  from 'react-spinners'
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [genre, setGenre] = useState('')
-  const [yearRange, setYearRange] = useState([1900, 2023])
 
   const [debouncedValue, setValue] = useDebounceValue(searchQuery, 500)
   const [movies , setMovies]  = useState<Movie[]>([])
@@ -23,10 +19,18 @@ export default function Page() {
   useEffect(()=>{
 
         ;(async()=>{
+          try {
             setisLoading(true)
+            console.log(debouncedValue)
             const {data}  = await axios.get(`https://watchify-topaz.vercel.app/api/movie?query=${debouncedValue}`)
             setMovies(data.movies)
             setisLoading(false)
+          } catch (error) {
+                console.log(error)
+                setMovies([])
+                setisLoading(false)
+          }
+
         })()
   },[debouncedValue])
 

@@ -65,12 +65,12 @@ async function checkForNewUploads() {
                             const full_video_name = lastobject.Key.split("/")[1]
                             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                             const videoname = full_video_name.split(".")[0]
-                            console.log(uploaded_url)
+                            
                             console.log(full_video_name)
                             console.log(videoname)
                             const runtask = await runnewTask(uploaded_url  , videoname , full_video_name)
                             await redisClient.set("lastobject"  , lastobject.Key)
-                            console.log("Uploaded")
+                            console.log(uploaded_url)
                         }
 
                     }
@@ -85,6 +85,7 @@ async function checkForNewUploads() {
 
 
 const runnewTask = async(videourl : string , videoname : string , full_video_name : string)=>{
+    console.log(videourl)
     const command = new RunTaskCommand({
         cluster: config.CLUSTER as string ,
         taskDefinition: config.TASK as string ,

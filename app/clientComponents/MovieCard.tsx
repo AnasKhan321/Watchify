@@ -25,8 +25,8 @@ export default function MovieCard({movie }  : {movie : Movie}) {
       </div>
       <div className={`absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`} />
       <CardContent className={`absolute bottom-0 left-0 right-0 p-4 transition-transform duration-300 ${isHovered ? 'translate-y-0' : 'translate-y-full'}`}>
-        <h3 className="text-xl font-bold mb-2 text-white">{movie.title}</h3>
-        <p className="text-sm text-gray-300 mb-4 line-clamp-2">{movie.description}</p>
+        <h3 className=" text-sm  md:text-base lg:text-xl font-bold mb-2 text-white">{movie.title}</h3>
+        <p className="text-sm text-gray-300 mb-4 line-clamp-2">{movie.description.slice(0 , 80 )}</p>
         <div className="flex space-x-2 mb-4">
           <Badge variant="secondary" className="bg-red-600 text-white">
             {new Date(movie.createdAt).getFullYear()}

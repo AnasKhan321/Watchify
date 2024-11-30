@@ -29,10 +29,10 @@ export default function MovieDetail( {movie}  : {movie : Movie}) {
         <div className="relative z-10 container mx-auto px-4 flex flex-col md:flex-row items-start md:items-center">
           <div className="md:w-1/3 mb-8 md:mb-0 md:mr-8">
           <Image
-            src={movie.imageurl} // .webp URL or other formats
+            src={movie.imageurl} 
             alt={`${movie.title} Poster`}
-            width={500}  // Set the image width
-            height={750} // Set the image height
+            width={500}  
+            height={750}
             className="w-full rounded-lg shadow-lg"
           />
           </div>

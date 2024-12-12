@@ -63,7 +63,7 @@ export default function MovieDetail( {movie}  : {movie : Movie}) {
       </section>
       <section className="bg-black py-12 "id='videoplayer'>
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold mb-6 text-center">Watch Now</h2>
+          <h2 className="text-xl md:text-3xl font-semibold mb-6 text-center">Watch Now</h2>
    
             <VideoPlayer src={movie.videourl}/>
 

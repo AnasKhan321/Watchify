@@ -5,9 +5,10 @@ import HomePage from "./clientComponents/HomePage";
 export const dynamic = 'force-dynamic'
 export default async function Page() {
   const {data} =  await axios.get(`https://watchify-topaz.vercel.app/api/movie`)
-
+  const res = await fetch("http://localhost:3000/api/webseries")
+  const ndata = await res.json()  ; 
 
   return(
-    <HomePage movies={data.movies}/> 
+    <HomePage movies={data.movies}  webseries={ndata.webseries}/> 
   )
 }

@@ -4,6 +4,7 @@ import { Avatar } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useSession   , signIn , signOut} from 'next-auth/react';
 import Image from "next/image"
+import Link from 'next/link';
 export default function GoogleClient(){
 
     const { data: session } = useSession();
@@ -39,7 +40,7 @@ export default function GoogleClient(){
             }
 
             {session?.user?.email == process.env.NEXT_PUBLIC_AUTHOR_EMAIL  &&  <button className='px-4 py-2 bg-red-600 text-white hover:bg-red-700 transition-all rounded-md  '
-                onClick={()=>{}}> Admin </button>}
+                onClick={()=>{}}>  <Link href="/admin"> Admin </Link> </button>}
         
         
         </>

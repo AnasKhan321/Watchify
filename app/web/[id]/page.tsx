@@ -1,7 +1,7 @@
 import WebDetail from "@/app/clientComponents/WebDetail"
 import {  Webseries } from "@/interfaces"
 
-
+// webseries
 interface  WebSeriess{
     webseries : Webseries[]
 }

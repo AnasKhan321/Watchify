@@ -59,4 +59,19 @@ export class Webseries{
         })
         return episode ; 
     }
+
+
+
+    public static async getWebSeriesbyquery (query : string){
+        const webseries = await prisma.webseries.findMany({
+            where : {
+                OR : [
+                    { title: { contains: query, mode: 'insensitive' } },
+                    { description: { contains: query , mode: 'insensitive' } },
+                ]
+            }
+        })
+
+        return webseries ; 
+    }
 }

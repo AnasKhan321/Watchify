@@ -14,16 +14,11 @@ export default function Navbar(){
           <h1 className="text-2xl font-bold text-red-600">WATCHIFY</h1>
           <nav className="hidden lg:flex space-x-4">
             <Link href="/" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">Home</Link>
-            <Link href="#" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">TV Shows</Link>
-            <Link href="#" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">Movies</Link>
-            <Link href="#" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">New & Popular</Link>
-            <Link href="#" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">My List</Link>
+            <Link href="/web" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">TV Shows</Link>
+            <Link href="/movie" className="header-link hover:text-red-600 transition-colors text-xs lg:text-base  ">Movies</Link>
           </nav>
           <div className="flex-1" />
-          <Link href="/movie">
-          <Search className="h-6 w-6 hover:text-red-600 transition-colors cursor-pointer" />
-          
-          </Link>
+
           <Bell className="h-6 w-6 hover:text-red-600 transition-colors cursor-pointer" />
 
 

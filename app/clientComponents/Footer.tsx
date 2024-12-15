@@ -28,9 +28,8 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4 text-red-400">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Movies</Link></li>
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">TV Shows</Link></li>
-              <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">My List</Link></li>
+              <li><Link href="/movie" className="text-gray-400 hover:text-white transition-colors">Movies</Link></li>
+              <li><Link href="/web" className="text-gray-400 hover:text-white transition-colors">TV Shows</Link></li>
             </ul>
           </div>
           <div>
@@ -65,13 +64,13 @@ export default function Footer() {
             <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Facebook">
               <Facebook className="h-6 w-6" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
+            <a href="https://x.com/ANASKHA96399553"  target='blank' className="text-gray-400 hover:text-white transition-colors" aria-label="Twitter">
               <Twitter className="h-6 w-6" />
             </a>
             <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="Instagram">
               <Instagram className="h-6 w-6" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors" aria-label="YouTube">
+            <a href="https://www.youtube.com/@CodeWithBat"  target='blank' className="text-gray-400 hover:text-white transition-colors" aria-label="YouTube">
               <Youtube className="h-6 w-6" />
             </a>
           </div>

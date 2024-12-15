@@ -74,3 +74,7 @@ export default function MovieDetail( {movie}  : {movie : Movie}) {
     </div>
   )
 }
+
+
+
+ 

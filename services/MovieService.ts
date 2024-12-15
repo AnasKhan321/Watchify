@@ -63,6 +63,18 @@ export class MovieService{
     }
 
 
+    public static async getMoviesbyquery (query : string){
+        const webseries = await prisma.movie.findMany({
+            where : {
+                OR : [
+                    { title: { contains: query, mode: 'insensitive' } },
+                    { description: { contains: query , mode: 'insensitive' } },
+                ]
+            }
+        })
+
+        return webseries ; 
+    }
 
 
 }

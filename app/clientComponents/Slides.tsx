@@ -1,5 +1,5 @@
 "use client"
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState  , useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -28,8 +28,15 @@ export default function Slides({movies}  : {movies : Movie[]}) {
     }
 
   };
+
+
+  
   return (
     <>
+
+
+
+
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -10,12 +10,10 @@ interface WebDetails{
     data : Webseries
 }
 
-export const revalidate = 60*60*24
- 
-export const dynamicParams = true 
+
  
 export async function generateStaticParams() {
-  const response :WebSeriess  = await fetch('https://watchify-topaz.vercel.app/api/webseries').then((res) =>
+  const response :WebSeriess  = await fetch('https://watchify-topaz.vercel.app/api/webseries'  ,    { next: { revalidate: 60 * 60 * 24 }}).then((res) =>
     res.json()
   )
   const data  : Webseries[] = response.webseries
@@ -30,7 +28,7 @@ export default async function Page({
   params: Promise<{ id: string }>
 }) {
   const id = (await params).id
-  const data: WebDetails = await fetch(`https://watchify-topaz.vercel.app/api/webseries/${id}`).then(
+  const data: WebDetails = await fetch(`https://watchify-topaz.vercel.app/api/webseries/${id}`  , { next: { revalidate: 60 * 60 * 24 }}).then(
     (res) => res.json()
   )
 

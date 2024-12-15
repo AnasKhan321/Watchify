@@ -22,7 +22,7 @@ export default function Page() {
           try {
             setisLoading(true)
             console.log(debouncedValue)
-            const {data}  = await axios.get(`https://watchify-topaz.vercel.app/api/webseries`)
+            const {data}  = await axios.get(`https://watchify-topaz.vercel.app/api/webseries?query=${debouncedValue}`)
             setMovies(data.webseries)
             setisLoading(false)
           } catch (error) {
